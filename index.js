@@ -1,3 +1,4 @@
+const yallist = require('yallist')
 
 function countWords(sentence) {
   const words = sentence.toLowerCase().replace(/[^A-Za-z0-9 ]/g, '').split(' ');
@@ -54,6 +55,22 @@ function countPalindromes(sentence) {
 
 }
 
+function compareLists(list1, list2) {
+  let current1 = list1.head;
+  let current2 = list2.head;
+
+  while(current1 !== null && current2 !== null) {
+    if(current1.value !== current2.value) {
+      return current1.value > current2.value ? 1 : -1
+    }
+
+    current1 = current1.next;
+    current2 = current2.next;
+  }
+
+  return 0
+}
+
 function main() {
   const sentence = "Hello there, how are you? Can you tell me how to get to the nearest Starbucks?"
   countWords(sentence)
@@ -64,5 +81,10 @@ function main() {
   const palindromes = 'Dad gave mom a Tesla as a racecar'
   console.log(countPalindromes(palindromes))
 
+
+  const list1 = yallist.create('Bilbo'.split(''))
+  const list2 = yallist.create('Bilboa'.split(''))
+
+  console.log(compareLists(list1, list2))
 }
 main()
