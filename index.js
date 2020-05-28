@@ -71,6 +71,25 @@ function compareLists(list1, list2) {
   return 0
 }
 
+function solveMode(nums) {
+  const frequency = {}
+  let mode = nums[0]
+
+  nums.forEach(num => {
+    if(frequency[num]) {
+      frequency[num]++
+      if(frequency[num] >= frequency[mode]) {
+        mode = num
+      }
+    }
+    else {
+      frequency[num] = 1
+    }
+  })
+
+  return `Mode = ${mode}, Frequency of mode = ${frequency[mode]}`
+}
+
 function main() {
   const sentence = "Hello there, how are you? Can you tell me how to get to the nearest Starbucks?"
   countWords(sentence)
@@ -86,5 +105,8 @@ function main() {
   const list2 = yallist.create('Bilboa'.split(''))
 
   console.log(compareLists(list1, list2))
+
+  const nums = [1, 2, 3, 6, 10, 3, 5, 6, 3, 3]
+  console.log(solveMode(nums))
 }
 main()
