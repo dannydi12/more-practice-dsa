@@ -27,6 +27,32 @@ function removeDuplicates(nums) {
   return nums.map((num, i) => num === nums[i - 1] ? undefined : num).filter(num => num !== undefined)
 }
 
+// polynomial complexity
+function countPalindromes(sentence) {
+  // linear time complexity
+  function _isPalindrome(word) {
+    let reversed = ''
+    const letters = word.split('') 
+
+    for(let i = letters.length - 1; i >= 0; i--) {
+      reversed += letters[i]
+    }
+
+    return reversed === word && word.length > 1
+  }
+
+  const words = sentence.toLowerCase().split(' ');
+  const palindromes = []
+
+  words.forEach(word => {
+    if(_isPalindrome(word)) {
+      palindromes.push(word)
+    }
+  })
+
+  return `${palindromes.join(', ')} ${palindromes.length} palindromes`
+
+}
 
 function main() {
   const sentence = "Hello there, how are you? Can you tell me how to get to the nearest Starbucks?"
@@ -34,6 +60,9 @@ function main() {
 
   const sortedList = [3, 4, 5, 6, 7, 7, 8, 9, 10, 10, 10, 11, 12, 13, 13, 13, 13, 13]
   console.log(removeDuplicates(sortedList))
+
+  const palindromes = 'Dad gave mom a Tesla as a racecar'
+  console.log(countPalindromes(palindromes))
 
 }
 main()
